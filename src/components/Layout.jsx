@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 
-const Layout=()=>{
+const Layout=()=>(
     <>
         <header>
             <nav>
@@ -18,6 +18,6 @@ const Layout=()=>{
         <Outlet />
         </main>
     </>
-}
+);
 
 export default Layout;
