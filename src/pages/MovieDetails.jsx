@@ -40,19 +40,19 @@ const MovieDetails = () => {
     <>
       <Link to={backLinkLocationRef.current}>Go back</Link>
       <div>
-        <img src={BASE_URL_POSTER+movieDetails.poster_path} alt={movieDetails.title}></img>
-      <div>
+        <img src={BASE_URL_POSTER+movieDetails.poster_path} alt={movieDetails.title} />
+        <div>
         <p>{movieDetails.title}</p>
         <p>User Score: {Math.round(movieDetails.popularity)}%</p>
         <p>Overview</p>
         <p>{movieDetails.overview}</p>
         <p>Genres</p>
         <ul>
-          {movieDetails.genres.map(({ name }) => (
+          {/* {movieDetails.genres.map(({ name }) => (
             <li key={name}>
               {name}
             </li>
-          ))}
+          ))} */}
         </ul>  
       </div>
       </div>
