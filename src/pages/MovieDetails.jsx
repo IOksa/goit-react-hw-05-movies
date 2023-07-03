@@ -7,7 +7,7 @@ const MovieDetails = () => {
   const [movieDetails, setMovieDetails]=useState({});
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
   const BASE_URL_POSTER='https://image.tmdb.org/t/p/w500';
 
 
@@ -17,7 +17,7 @@ const MovieDetails = () => {
     }
     console.log('movieId=', movieId);
     const fetchMovieDetails=(()=>{
-      const fetchQuery=`${BASE_URL}3/movie/${movieId}?language=en-US&api_key=${API_KEY}`;
+      const fetchQuery=`${BASE_URL}3/movie/${movieId}?api_key=${API_KEY}&language=en-US`;
       console.log("fetchQuery=",fetchQuery);
       axios.get(fetchQuery)
       .then((response) => {
@@ -40,7 +40,7 @@ const MovieDetails = () => {
     <>
       <Link to={backLinkLocationRef.current}>Go back</Link>
       <div>
-        <img src={BASE_URL_POSTER+movieDetails.poster_path} alt={movieDetails.title} />
+        <img src={BASE_URL_POSTER+movieDetails.poster_path} alt={movieDetails.title} width="400px" />
         <div>
         <p>{movieDetails.title}</p>
         <p>User Score: {Math.round(movieDetails.popularity)}%</p>

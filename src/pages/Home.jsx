@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import {BASE_URL, API_KEY} from '../constants/constants';
-//import TrendingMovie from 'components/TrendingMovie';
+
 
 const Home = () => {
     const [trendingMovies, setTrendingMovies]=useState([]);
@@ -12,7 +12,7 @@ const Home = () => {
     useEffect(() => {
 
       const fetchTodayMovies=(()=>{
-        const fetchQuery=`${BASE_URL}3/trending/movie/day?language=en-US&api_key=${API_KEY}`;
+        const fetchQuery=`${BASE_URL}3/trending/movie/day?api_key=${API_KEY}&language=en-US`;
         console.log("fetchQuery=",fetchQuery);
         axios.get(fetchQuery)
         .then((response) => {

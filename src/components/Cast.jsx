@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {BASE_URL, API_KEY} from '../constants/constants';
 
-export const Cast= () => {
+const Cast= () => {
   const { movieId } = useParams();
-  const [actors, setActors]=useState(null);
+  const [actors, setActors]=useState([]);
   const BASE_URL_POSTER='https://image.tmdb.org/t/p/w500';
+
 
   useEffect(() => {
     if (!movieId) {
@@ -32,21 +33,23 @@ export const Cast= () => {
     })
     
     fetchMovieCast();
-  }, [movieId])
+  }, [movieId]);
 
   return (
-    <div>
-    <p>Cast: {movieId}</p>
-    <ul>
-      {actors.map((actor) => (
-      <li key={actor.id}>
-        <img src={BASE_URL_POSTER+actor.profile_path} alt={actor.name} width="100px" height="150px"/>
-        <p>{actor.name}</p>
-        <p>Character: {actor.character}</p>
-      </li>
-      ))}
-      </ul>
-    </div>
+ 
+      <div>
+        <p>Cast: {movieId}</p>
+        <ul>
+          {actors.map((actor) => (
+          <li key={actor.id}>
+            <img src={BASE_URL_POSTER+actor.profile_path} alt={actor.name} width="100px" height="150px"/>
+            <p>{actor.name}</p>
+            <p>Character: {actor.character}</p>
+          </li>
+          ))}
+          </ul>
+      </div>
+    
   );
 };
 
