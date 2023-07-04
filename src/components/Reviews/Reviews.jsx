@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import {BASE_URL, API_KEY} from '../constants/constants';
+import {BASE_URL, API_KEY} from '../../constants/constants';
+import css from './Reviews.module.css';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -44,11 +45,12 @@ const Reviews = () => {
 
   return (
     <div>
+      <h3 className={css.title}>Reviews</h3>
       <ul>
         {Array.isArray(review)?
         review.map(rev=>
         <li key={rev.id}>
-          <p>{rev.author}: </p>
+          <p className={css.author}>{rev.author}: </p>
           <p>{rev.content}</p>
         </li>
         )

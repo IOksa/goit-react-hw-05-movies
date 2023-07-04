@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
-import {BASE_URL, API_KEY} from '../constants/constants';
+import {BASE_URL, API_KEY} from '../../constants/constants';
+import css from './Home.module.css';
 
 
 const Home = () => {
@@ -35,12 +35,12 @@ const Home = () => {
 
     return (
       <div>
-        <p>Trending today</p>
+        <p className={css.title}>Trending today</p>
         <ul>
            {trendingMovies.map(trend => (
 
                 <li key={trend.id}>
-                <Link to={`/movies/${trend.id}`} state={location }>
+                <Link to={`/movies/${trend.id}`} state={location} className={css.movieLink} >
                   {trend.title}
                 </Link>
                 </li>

@@ -1,0 +1,10 @@
+.actorsItem{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.title{
+    margin-left: 20px;
+}

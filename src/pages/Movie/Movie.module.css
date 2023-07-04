@@ -1,0 +1,47 @@
+.SearchForm {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.SearchFormButton {
+    cursor: pointer;
+    background-color: #5c6ed4;
+    color: #FFFFFF;
+    width: 100px;
+    height: 46px;
+    border-radius: 0 8px 8px 0;
+    border: none;
+    padding: 12px;
+    text-align: center;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    
+}
+
+.SearchFormButton:hover {
+    background-color: #3f51b5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.SearchFormInput {
+    width: 250px; 
+    height: 40px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.SearchFormInput::placeholder {
+    font: inherit;
+    font-size: 18px;
+}
+  
+.SearchFormInput:focus{
+    border: 3px solid #3f51b5;
+    
+}
+
+.movieLink:hover{
+    color: rgb(176, 79, 79);
+}

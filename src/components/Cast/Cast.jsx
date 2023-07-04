@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {BASE_URL, API_KEY} from '../constants/constants';
+import {BASE_URL, API_KEY, BASE_URL_POSTER} from '../../constants/constants';
+import css from './Cast.module.css';
 
 const Cast= () => {
   const { movieId } = useParams();
   const [actors, setActors]=useState([]);
-  const BASE_URL_POSTER='https://image.tmdb.org/t/p/w500';
-
 
   useEffect(() => {
     if (!movieId) {
@@ -38,13 +37,15 @@ const Cast= () => {
   return (
  
       <div>
-        <p>Cast: {movieId}</p>
-        <ul>
+        <h3 className={css.title}>Cast</h3>
+        <ul className={css.actorsList}>
           {actors.map((actor) => (
-          <li key={actor.id}>
+          <li key={actor.id} className={css.actorsItem}>
             <img src={BASE_URL_POSTER+actor.profile_path} alt={actor.name} width="100px" height="150px"/>
+            <div>
             <p>{actor.name}</p>
             <p>Character: {actor.character}</p>
+            </div>
           </li>
           ))}
           </ul>
