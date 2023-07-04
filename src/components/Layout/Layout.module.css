@@ -14,7 +14,7 @@ header {
     text-decoration: none;
 }
 
-.menuLink .active{
+.menuLink.active{
     color: red;
 }
 

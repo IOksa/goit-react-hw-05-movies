@@ -1,9 +1,16 @@
 .goBack{
-    margin-top: 50px;
+    display: block; 
+    margin-top: 20px;
     margin-left: 20px;
-    padding: 16px;
+    padding-top: 12px;
+
+    width: 150px;
+    height: 40px;
+    
     color: #fff;
     text-decoration: none;
+    text-align: center;
+
     background-color: #5c6ed4;
     border-radius: 8px;
     border: 1px solid #5c6ed4;
@@ -46,3 +53,4 @@
 .genresItem{
     list-style: none;
 }
+

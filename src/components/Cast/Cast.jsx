@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {BASE_URL, API_KEY, BASE_URL_POSTER} from '../../constants/constants';
 import css from './Cast.module.css';
+import image from '../../images/image-not-found.webp';
 
 const Cast= () => {
   const { movieId } = useParams();
   const [actors, setActors]=useState([]);
+
 
   useEffect(() => {
     if (!movieId) {
@@ -39,16 +41,17 @@ const Cast= () => {
       <div>
         <h3 className={css.title}>Cast</h3>
         <ul className={css.actorsList}>
-          {actors.map((actor) => (
+          {actors && actors.map((actor) => (
           <li key={actor.id} className={css.actorsItem}>
-            <img src={BASE_URL_POSTER+actor.profile_path} alt={actor.name} width="100px" height="150px"/>
+            <img src={actor.profile_path ? BASE_URL_POSTER+actor.profile_path : image} alt={actor.name} className={css.img} />
             <div>
             <p>{actor.name}</p>
             <p>Character: {actor.character}</p>
             </div>
           </li>
           ))}
-          </ul>
+        </ul>
+         
       </div>
     
   );

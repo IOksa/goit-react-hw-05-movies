@@ -15,19 +15,32 @@ const MovieDetails = () => {
       return;
     }
     console.log('movieId=', movieId);
-    const fetchMovieDetails=(()=>{
-      const fetchQuery=`${BASE_URL}3/movie/${movieId}?api_key=${API_KEY}&language=en-US`;
+    const fetchMovieDetails = (async ()=>{
+      const fetchQuery = `${BASE_URL}3/movie/${movieId}?api_key=${API_KEY}&language=en-US`;
       console.log("fetchQuery=",fetchQuery);
-      axios.get(fetchQuery)
-      .then((response) => {
-        console.log('response=', response);
-        setMovieDetails(response.data);
-        console.log('response.data=', response.data);
-      
-      })
-      .catch((error)=> {
+      try{
+        await axios.get(fetchQuery)
+        .then((response) => {
+            console.log('response=', response);
+            setMovieDetails(response.data);
+            console.log('response.data=', response.data);
+          
+          })
+      }
+      catch (error){
         console.log(error);
-      });
+      }
+    
+      // axios.get(fetchQuery)
+      // .then((response) => {
+      //   console.log('response=', response);
+      //   setMovieDetails(response.data);
+      //   console.log('response.data=', response.data);
+      
+      // })
+      // .catch((error)=> {
+      //   console.log(error);
+      // });
     
      
     })
@@ -37,24 +50,25 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={backLinkLocationRef.current} className={css.goBack}>Go back</Link>
-      <div className={css.wrapper}>
+      <Link to={backLinkLocationRef.current} className={css.goBack}>← Go back</Link>
+      {movieDetails && <div className={css.wrapper}>
         <img src={BASE_URL_POSTER+movieDetails.poster_path} alt={movieDetails.title} width="200px" />
         <div>
           <p className={css.movieHeader}>{movieDetails.title} </p>
-          <p>User Score: {Math.round(movieDetails.popularity)}%</p>
+          <p>Popularity: {Math.round(movieDetails.popularity)}</p>
           <p className={css.movieHeader}>Overview</p>
           <p>{movieDetails.overview}</p>
           <p className={css.movieHeader}>Genres</p>
-          {/* <ul className={css.genresList}>
+          <ul className={css.genresList}>
             {movieDetails.genres.map(({ name }) => (
               <li key={name} className={css.genresItem}>
                 <p>{name}</p>
               </li>
             ))}
-          </ul>   */}
+          </ul>  
         </div>
       </div>
+      }
       <div className={css.wrapperAdInfo}>
         <h2>Additional information</h2>
         <ul>
@@ -66,6 +80,7 @@ const MovieDetails = () => {
           </li>
         </ul>
       </div>
+    
       <Outlet />
     </>
   );
