@@ -11,20 +11,22 @@ const Home = () => {
 
     useEffect(() => {
 
-      const fetchTodayMovies=(()=>{
+      const fetchTodayMovies=(async ()=>{
         const fetchQuery=`${BASE_URL}3/trending/movie/day?api_key=${API_KEY}&language=en-US`;
         console.log("fetchQuery=",fetchQuery);
-        axios.get(fetchQuery)
-        .then((response) => {
+        try{
+          await axios.get(fetchQuery)
+          .then((response) => {
           console.log('response=', response);
           const res=response.data.results.map(r=>({id: r.id, title: r.title}));
           console.log('res=', res);
           setTrendingMovies([...res]);
          
-        })
-        .catch((error)=> {
+          })
+        
+        }catch (error) {
           console.log(error);
-        });
+        }
       
        
       })

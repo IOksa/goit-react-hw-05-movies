@@ -29,20 +29,7 @@ const MovieDetails = () => {
       }
       catch (error){
         console.log(error);
-      }
-    
-      // axios.get(fetchQuery)
-      // .then((response) => {
-      //   console.log('response=', response);
-      //   setMovieDetails(response.data);
-      //   console.log('response.data=', response.data);
-      
-      // })
-      // .catch((error)=> {
-      //   console.log(error);
-      // });
-    
-     
+      }     
     })
     
     fetchMovieDetails();

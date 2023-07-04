@@ -35,22 +35,22 @@ const Movies = () => {
       return;
     }
 
-    const fetchSearchMovies= (()=>{
+    const fetchSearchMovies= (async ()=>{
       const fetchQuery=`${BASE_URL}3/search/movie?api_key=${API_KEY}&query=${queryString}&include_adult=false&language=en-US&page=1`;
       console.log("fetchQuery=",fetchQuery);
-      axios.get(fetchQuery)
-      .then((response) => {
-        console.log('response=', response);
-        const res=response.data.results.map(r=>({id: r.id, title: r.title}));
-        console.log('res=', res);
-        setSearchMoviesList([...res]);
-       
-      })
-      .catch((error)=> {
+      try{
+        await axios.get(fetchQuery)
+        .then((response) => {
+          console.log('response=', response);
+          const res=response.data.results.map(r=>({id: r.id, title: r.title}));
+          console.log('res=', res);
+          setSearchMoviesList([...res]);
+         
+        })
+      }catch(error) {
         console.log(error);
-      });
-    
-     
+      }
+          
     })
     
     fetchSearchMovies();
@@ -91,4 +91,3 @@ const Movies = () => {
 
 export default Movies;
 
-//    <SearchMovieForm onSubmit={onChangeQuery} value={queryString}/>
