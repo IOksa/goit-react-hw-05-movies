@@ -59,13 +59,13 @@ const MovieDetails = () => {
           <p className={css.movieHeader}>Overview</p>
           <p>{movieDetails.overview}</p>
           <p className={css.movieHeader}>Genres</p>
-          <ul className={css.genresList}>
-            {movieDetails.genres && movieDetails.genres.map(({ name }) => (
+          {/* <ul className={css.genresList}>
+            {movieDetails.genres.map(({ name }) => (
               <li key={name} className={css.genresItem}>
                 {name}
               </li>
             ))}
-          </ul>  
+          </ul>   */}
         </div>
       </div>
       }
