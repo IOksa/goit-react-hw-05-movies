@@ -14,18 +14,15 @@ const MovieDetails = () => {
     if (!movieId) {
       return;
     }
-    console.log('movieId=', movieId);
+    
     const fetchMovieDetails = (async ()=>{
       const fetchQuery = `${BASE_URL}3/movie/${movieId}?api_key=${API_KEY}&language=en-US`;
-      console.log("fetchQuery=",fetchQuery);
+      
       try{
         await axios.get(fetchQuery)
         .then((response) => {
-            console.log('response=', response);
             setMovieDetails(response.data);
-            console.log('response.data=', response.data);
-          
-          })
+        })
       }
       catch (error){
         console.log(error);
@@ -41,18 +38,18 @@ const MovieDetails = () => {
       {movieDetails && <div className={css.wrapper}>
         <img src={BASE_URL_POSTER+movieDetails.poster_path} alt={movieDetails.title} width="200px" />
         <div>
-          <p className={css.movieHeader}>{movieDetails.title} </p>
+          <p className={css.movieHeader}>{movieDetails.title} ({movieDetails?.release_date?.slice(0,4)})</p>
           <p>Popularity: {Math.round(movieDetails.popularity)}</p>
           <p className={css.movieHeader}>Overview</p>
           <p>{movieDetails.overview}</p>
           <p className={css.movieHeader}>Genres</p>
-          {/* <ul className={css.genresList}>
-            {movieDetails.genres.map(({ name }) => (
+          <ul className={css.genresList}>
+            {movieDetails?.genres?.map(({ name }) => (
               <li key={name} className={css.genresItem}>
                 {name}
               </li>
             ))}
-          </ul>   */}
+          </ul>  
         </div>
       </div>
       }
@@ -75,4 +72,3 @@ const MovieDetails = () => {
 
 export default MovieDetails;
 
-// ({movieDetails.release_date.slice(0,4)})

@@ -21,4 +21,9 @@ header {
 .menuLink:hover {
 	cursor: pointer;
 	text-decoration: underline;
+    
+}
+
+.active{
+    color: red;
 }

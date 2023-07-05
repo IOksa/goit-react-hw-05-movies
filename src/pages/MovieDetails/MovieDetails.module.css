@@ -1,16 +1,17 @@
 .goBack{
-    display: block; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+
     margin-top: 20px;
     margin-left: 20px;
-    padding-top: 12px;
 
     width: 150px;
     height: 40px;
     
     color: #fff;
     text-decoration: none;
-    text-align: center;
-
+ 
     background-color: #5c6ed4;
     border-radius: 8px;
     border: 1px solid #5c6ed4;

@@ -8,7 +8,9 @@ const Layout=()=>(
             <nav>
                 <ul className={css.menuList}>
                     <li>
-                        <NavLink className={css.menuLink} to="/">Home</NavLink>
+                        <NavLink 
+                        className={({isActive, isPending})=>isPending ? "pending" : isActive ? "active" :""}
+                        to="/">Home</NavLink>
                     </li>
                     <li>
                         <NavLink className={css.menuLink} to="/movies">Movies</NavLink>

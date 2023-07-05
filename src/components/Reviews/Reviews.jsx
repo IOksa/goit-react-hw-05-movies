@@ -14,28 +14,20 @@ const Reviews = () => {
           return;
         }
     
-
-      
-    console.log('movieId=', movieId);
-    const fetchMovieReview=(()=>{
+    const fetchMovieReview= (async ()=>{
       const fetchQuery=`${BASE_URL}3/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`;
-      console.log("fetchQuery=",fetchQuery);
-      axios.get(fetchQuery)
-      .then((response) => {
-        console.log('response=', response);
-        if(response.data.results.length>0){
-          setReview(response.data.results);
-        }else{
-          setReview('We don`t have any reviews for this movie');
-          
-        }
-        
-        console.log('response.data.results=', response.data.results);
-      
-      })
-      .catch((error)=> {
-        console.log(error);
-      });
+      try{
+        await axios.get(fetchQuery)
+        .then((response) => {
+          if(response.data.results.length>0){
+            setReview(response.data.results);
+          }else{
+            setReview('We don`t have any reviews for this movie');
+          }
+        })
+      }catch(error){
+        console.log(error)
+      };
     
      
     })
