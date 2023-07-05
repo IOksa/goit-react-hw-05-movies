@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import {BASE_URL, API_KEY} from '../../constants/constants';
 import css from './Movie.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Movies = () => {
  
@@ -36,8 +38,16 @@ const Movies = () => {
       try{
         await axios.get(fetchQuery)
         .then((response) => {
-          const res=response.data.results.map(r=>({id: r.id, title: r.title}));
-          setSearchMoviesList([...res]);
+          console.log("response=",response);
+          const res=response.data.results;
+          if(res.length>0){
+            res.map(r=>({id: r.id, title: r.title}));
+            setSearchMoviesList([...res]);
+          }
+          else{
+           toast.error("Sorry, we don`t have such films!", {autoClose: 3000, theme: "colored",});
+          }
+         
          
         })
       }catch(error) {
@@ -65,6 +75,7 @@ const Movies = () => {
        Search
       </button>
     </form>
+    <ToastContainer />
 
     <ul>
       {searchMoviesList?.map(movie => (
